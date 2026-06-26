@@ -47,7 +47,9 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
   .item{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid var(--hair);background:var(--look)}
   .item img{width:100%;height:100%;object-fit:contain;padding:7px;display:block}
-  .item .lbl{position:absolute;left:0;right:0;bottom:0;padding:6px 7px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:10px;line-height:1.2}
+  .item .lbl{position:absolute;left:0;right:0;bottom:0;padding:6px 7px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:10px;line-height:1.2;display:flex;align-items:center;justify-content:space-between;gap:6px}
+  .item .lt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .item .lw{flex:0 0 auto;font-family:'Space Mono',monospace;font-size:9px;opacity:.9}
   .item .dot{position:absolute;top:7px;left:7px;width:13px;height:13px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85)}
   .item .cat{position:absolute;top:7px;right:7px;background:rgba(26,24,21,.78);color:#fff;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.05em;padding:3px 6px;border-radius:5px;text-transform:uppercase}
   .add-tile{aspect-ratio:3/4;border-radius:14px;border:1.5px dashed var(--wine);display:grid;place-items:center;color:var(--wine);background:transparent;cursor:pointer;font-family:inherit}
@@ -70,6 +72,13 @@
   .pill{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--wine);border:1px solid var(--wine);border-radius:18px;padding:3px 8px;white-space:nowrap;text-transform:uppercase}
   .look .why{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:12px}
   .mini{width:100%;border:1px solid var(--hair);background:transparent;border-radius:11px;padding:10px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--ink)}
+  .wcontrols{display:flex;gap:8px;margin-bottom:14px}
+  .wcontrols input{flex:1;min-width:0;border:1px solid var(--hair);border-radius:11px;padding:10px 12px;font-size:13px;font-family:inherit;background:var(--card);color:var(--ink)}
+  .wcontrols select{flex:0 0 auto;max-width:34%;border:1px solid var(--hair);border-radius:11px;padding:10px 6px;font-size:12px;font-family:inherit;background:var(--card);color:var(--ink)}
+  .lacts{display:flex;gap:7px;margin-top:12px}
+  .la{flex:1;border:1px solid var(--hair);background:transparent;border-radius:10px;padding:10px 4px;font-size:14px;font-weight:600;font-family:inherit;color:var(--ink);cursor:pointer}
+  .la.on{background:var(--sel-bg);color:var(--sel-fg);border-color:var(--sel-bg)}
+  .la.heart.on{background:var(--wine);color:#fff;border-color:var(--wine)}
   .mini.saved{background:var(--wine);color:#fff;border-color:var(--wine)}
   .nav{flex:0 0 auto;display:flex;border-top:1px solid var(--hair);background:var(--canvas);padding-bottom:env(safe-area-inset-bottom)}
   .nav button{flex:1;border:none;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 0 13px;cursor:pointer;color:var(--muted);font-family:inherit;font-size:10.5px}
@@ -98,6 +107,29 @@
   .toast{position:absolute;left:20px;right:20px;bottom:86px;background:var(--sel-bg);color:var(--sel-fg);border-radius:13px;padding:13px 16px;font-size:13px;z-index:40;opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none;text-align:center}
   .toast.show{opacity:1;transform:none}
   .loadwrap{text-align:center;padding:40px 10px;color:var(--muted)}
+  .weather{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:11px 13px;margin-bottom:16px;font-size:13px}
+  .weather .wt{font-weight:600}
+  .weather .wbtn{margin-left:auto;border:1px solid var(--hair);background:transparent;border-radius:9px;padding:7px 11px;font-size:12px;font-weight:600;font-family:inherit;color:var(--ink);cursor:pointer;white-space:nowrap}
+  .wmanual{display:flex;gap:7px;margin-top:8px}
+  .wmanual .chip{font-size:12px;padding:7px 12px}
+  .bpgroup{margin-bottom:14px}
+  .bplabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .bprow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+  .bprow::-webkit-scrollbar{height:0}
+  .bpick{flex:0 0 auto;width:62px;height:78px;border-radius:11px;overflow:hidden;border:2px solid var(--hair);background:var(--look);cursor:pointer}
+  .bpick.on{border-color:var(--wine)}
+  .bpick img{width:100%;height:100%;object-fit:contain;padding:4px}
+  .stat-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px}
+  .stat-row .sn{width:84px;flex:0 0 auto;color:var(--muted)}
+  .stat-bar{flex:1;height:18px;border-radius:6px;background:var(--look);overflow:hidden}
+  .stat-bar i{display:block;height:100%;background:var(--wine);border-radius:6px}
+  .stat-row .sv{width:26px;flex:0 0 auto;text-align:right;font-family:'Space Mono',monospace;font-size:12px}
+  .stat-card{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:14px;margin-bottom:14px}
+  .stat-card .sct{font-family:var(--font-head);font-size:17px;font-weight:500;margin-bottom:10px}
+  .insight{font-size:13px;line-height:1.6;color:var(--ink);background:var(--look);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+  .chiprow{display:flex;flex-wrap:wrap;gap:7px}
+  .tagpill{font-size:12px;border:1px solid var(--hair);border-radius:16px;padding:5px 11px;color:var(--ink)}
+  .tagpill b{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-left:5px}
   .edit-tools{display:flex;gap:8px;margin-bottom:14px}
   .etool{flex:1;border:1px solid var(--hair);background:transparent;border-radius:11px;padding:11px;font-size:13px;font-weight:600;font-family:inherit;color:var(--ink);cursor:pointer}
   .etool.on{background:var(--sel-bg);color:var(--sel-fg);border-color:var(--sel-bg)}
@@ -131,7 +163,9 @@
       <div class="eyebrow">Your closet</div>
       <div class="h">Wardrobe<span class="ai-tag ai-off" id="aiBadge">manual</span></div>
       <div class="sub">Photograph each piece — the background is cut out automatically, on your phone. Everything stays on your device.</div>
+      <button class="mini" style="width:auto;padding:8px 14px;margin-bottom:14px" onclick="openStats()">📊 Wardrobe stats</button>
       <div class="chips" id="wfilter"></div>
+      <div class="wcontrols" id="wcontrols"></div>
       <div id="wgrid"></div>
     </section>
 
@@ -139,9 +173,11 @@
       <div class="eyebrow">Built from your pieces</div>
       <div class="h">Style me</div>
       <div class="sub">Pick an occasion and get looks assembled from what you own.</div>
+      <div id="weather"></div>
       <div class="chips" id="occ"></div>
       <div class="viewtoggle"><button class="vchip on" id="vFlat" onclick="setLayout('flat')">Flat-lay</button><button class="vchip" id="vRow" onclick="setLayout('row')">Pieces</button></div>
       <button class="btn btn-primary" id="styleBtn" style="margin-top:6px">Style me</button>
+      <button class="btn btn-ghost" style="margin-top:10px" onclick="openBuild()">Build your own look</button>
       <div id="looks" style="margin-top:20px"></div>
     </section>
 
@@ -165,6 +201,21 @@
   <div class="sheet" id="setSheet">
     <div class="shead"><div class="t">Settings</div><button class="x" onclick="closeSettings()">✕</button></div>
     <div class="sbody" id="setBody"></div>
+  </div>
+
+  <div class="sheet" id="buildSheet">
+    <div class="shead"><div class="t">Build a look</div><button class="x" onclick="closeBuild()">✕</button></div>
+    <div class="sbody">
+      <div id="buildPreview"></div>
+      <button class="btn btn-primary" style="margin:4px 0 6px" onclick="saveBuilt()">Save this look</button>
+      <div class="note" style="text-align:center;margin-bottom:14px">Tap pieces to add or swap them.</div>
+      <div id="buildPicker"></div>
+    </div>
+  </div>
+
+  <div class="sheet" id="statsSheet">
+    <div class="shead"><div class="t">Wardrobe stats</div><button class="x" onclick="closeStats()">✕</button></div>
+    <div class="sbody" id="statsBody"></div>
   </div>
 
   <div class="sheet" id="editSheet">
@@ -196,7 +247,7 @@
 const OCCASIONS=["Casual","Work","Dinner","Evening","Weekend"];
 const CATS=["Top","Bottom","Dress","Outerwear","Shoes","Accessory"];
 const MODEL="claude-sonnet-4-6";
-const state={items:[],saved:[],filter:"All",occasion:"Casual",pending:null,layout:"flat",lastLooks:null,editingId:null,batch:null,batchIdx:0};
+const state={items:[],saved:[],filter:"All",occasion:"Casual",pending:null,layout:"flat",lastLooks:null,editingId:null,batch:null,batchIdx:0,q:"",fseason:"All",sort:"recent",weather:null,buildIds:[]};
 const SEASONS=["Any","Warm","Cold"];
 const $=id=>document.getElementById(id);
 
@@ -239,6 +290,14 @@ async function loadRMBG(){if(_rmbg)return _rmbg;
   const mod=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.8/+esm');
   _rmbg=mod.removeBackground||mod.default;return _rmbg;}
 function blobToDataURL(b){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(b);});}
+function rotateImage(dataURL,deg){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{
+  const w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;const c=document.createElement('canvas');
+  if(deg===90||deg===270){c.width=h;c.height=w;}else{c.width=w;c.height=h;}
+  const ctx=c.getContext('2d');ctx.translate(c.width/2,c.height/2);ctx.rotate(deg*Math.PI/180);ctx.drawImage(img,-w/2,-h/2);
+  res(c.toDataURL('image/png'));};img.onerror=rej;img.src=dataURL;});}
+async function rotatePending(){const p=state.pending;if(!p)return;
+  try{p.photo=await rotateImage(p.photo,90);if(p.orig)p.orig=await rotateImage(p.orig,90);}catch(_){toast("Couldn't rotate");return;}
+  renderAddBody({});}
 async function cutout(dataURL){
   const fn=await loadRMBG();
   const inBlob=await(await fetch(dataURL)).blob();
@@ -260,21 +319,29 @@ async function aiTag(dataURL){const base64=dataURL.split(',')[1];
   const txt=await callAI([{type:"image",source:{type:"base64",media_type:"image/jpeg",data:base64}},
     {type:"text",text:'Tag this single clothing item for a personal wardrobe app. Reply with ONLY a JSON object, no markdown. Keys: category (one of Top, Bottom, Dress, Outerwear, Shoes, Accessory), subtype (short, e.g. "white cotton shirt"), color (plain word), colorHex (hex string), formality (Casual, Smart or Formal), season (Any, Warm or Cold).'}],400);
   return parseJSON(txt);}
-async function aiStyle(items,occasion){
-  const list=items.map(i=>({id:i.id,category:i.category,subtype:i.subtype,color:i.color,formality:i.formality}));
-  const txt=await callAI('You are a personal stylist. Using ONLY items from this wardrobe, build 3 distinct outfits for the occasion "'+occasion+'", each inspired by a current fashion trend. An outfit is a Top+Bottom (or a Dress), plus Shoes, optionally Outerwear and/or an Accessory — pieces that genuinely work by colour and formality. Reply with ONLY a JSON array, no markdown. Each: {name (short, evocative), trend (e.g. "Quiet luxury"), itemIds (array of ids from the list), why (max 16 words)}. Wardrobe: '+JSON.stringify(list),1000);
+async function aiStyle(items,occasion,wnote){
+  const list=items.map(i=>({id:i.id,category:i.category,subtype:i.subtype,color:i.color,formality:i.formality,season:i.season}));
+  const txt=await callAI('You are a personal stylist. Using ONLY items from this wardrobe, build 3 distinct outfits for the occasion "'+occasion+'", each inspired by a current fashion trend. An outfit is a Top+Bottom (or a Dress), plus Shoes, optionally Outerwear and/or an Accessory — pieces that genuinely work by colour and formality. Where it suits the look or the weather, LAYER pieces: an outfit may include two upper layers (e.g. a tee or shirt under a knit, or a jacket over a top) — so itemIds can contain more than one Top, or a Top plus Outerwear. Make at least one of the three outfits a layered look when the wardrobe allows.'+(wnote||'')+tasteSummary()+' Reply with ONLY a JSON array, no markdown. Each: {name (short, evocative), trend (e.g. "Quiet luxury"), itemIds (array of ids from the list), why (max 16 words)}. Wardrobe: '+JSON.stringify(list),1000);
   return parseJSON(txt);}
 
 /* ---- local fallback styler ---- */
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function localStyle(items,occasion){
-  const by=c=>items.filter(i=>i.category===c);
+function localStyle(items,occasion,weather){
+  let pool=items;
+  if(weather&&weather.bucket){const b=weather.bucket;
+    const f=items.filter(i=>{const s=i.season||'Any';if(s==='Any')return true;if(b==='cold')return s!=='Warm';if(b==='warm')return s!=='Cold';return true;});
+    if(f.length>=3)pool=f;}
+  const cold=weather&&weather.bucket==='cold';
+  const by=c=>pool.filter(i=>i.category===c);
   const tops=by('Top'),bottoms=by('Bottom'),dresses=by('Dress'),shoes=by('Shoes'),outer=by('Outerwear'),acc=by('Accessory');
   const bases=[];dresses.forEach(d=>bases.push([d]));tops.forEach(t=>bottoms.forEach(b=>bases.push([t,b])));shuffle(bases);
-  const looks=[];for(const base of bases){if(looks.length>=3)break;const ids=base.map(x=>x.id);
-    if(shoes.length)ids.push(pick(shoes).id);if(outer.length&&Math.random()<.5)ids.push(pick(outer).id);if(acc.length&&Math.random()<.4)ids.push(pick(acc).id);
-    looks.push({name:occasion+" pairing",trend:"From your closet",itemIds:ids,why:"A clean combination built from pieces you own."});}
+  const looks=[];for(const base of bases){if(looks.length>=3)break;const ids=base.map(x=>x.id);let layered=false;
+    if(base.length===2){const others=tops.filter(t=>t.id!==base[0].id);if(others.length&&Math.random()<(cold?0.7:0.32)){ids.push(pick(others).id);layered=true;}}
+    if(shoes.length)ids.push(pick(shoes).id);
+    if(outer.length&&Math.random()<(cold?0.92:0.4)){ids.push(pick(outer).id);layered=true;}
+    if(acc.length&&Math.random()<.4)ids.push(pick(acc).id);
+    looks.push({name:layered?"Layered "+occasion.toLowerCase():occasion+" pairing",trend:layered?"Layered":(cold?"Layered up":"From your closet"),itemIds:ids,why:layered?"Pieces layered together from your closet.":"A clean combination built from pieces you own."});}
   return looks;}
 
 /* ---- render ---- */
@@ -282,44 +349,83 @@ function itemById(id){return state.items.find(i=>i.id===id);}
 function refreshAIBadge(){const b=$('aiBadge');if(hasAI()){b.className="ai-tag ai-on";b.textContent="AI on";$('gear').classList.add('lit');}else{b.className="ai-tag ai-off";b.textContent="manual";$('gear').classList.remove('lit');}}
 function renderWardrobe(){
   $('wfilter').innerHTML=["All",...CATS].map(c=>`<button class="chip ${state.filter===c?'on':''}" onclick="setFilter('${c}')">${c}</button>`).join("");
-  const list=state.items.filter(i=>state.filter==="All"||i.category===state.filter);const g=$('wgrid');
+  $('wcontrols').innerHTML=`
+    <input id="wq" placeholder="Search brand, colour, type…" value="${(state.q||'').replace(/"/g,'&quot;')}" oninput="onSearch(this.value)">
+    <select id="wseason" onchange="state.fseason=this.value;renderGrid()">${["All",...SEASONS].map(s=>`<option ${s===state.fseason?'selected':''}>${s}</option>`).join("")}</select>
+    <select id="wsort" onchange="state.sort=this.value;renderGrid()"><option value="recent" ${state.sort==='recent'?'selected':''}>Recent</option><option value="least" ${state.sort==='least'?'selected':''}>Least worn</option></select>`;
+  renderGrid();
+}
+function onSearch(v){state.q=v;renderGrid();}
+function filteredItems(){
+  const q=(state.q||'').trim().toLowerCase();
+  let list=state.items.filter(i=>{
+    if(state.filter!=="All"&&i.category!==state.filter)return false;
+    if(state.fseason!=="All"){const s=i.season||"Any";if(s!=="Any"&&s!==state.fseason)return false;}
+    if(q){const hay=[(i.brand||''),(i.color||''),(i.subtype||''),(i.category||'')].join(' ').toLowerCase();if(!hay.includes(q))return false;}
+    return true;
+  });
+  if(state.sort==='least')list=list.slice().sort((a,b)=>(a.wornCount||0)-(b.wornCount||0));
+  return list;
+}
+function renderGrid(){const g=$('wgrid');
   if(!state.items.length){g.innerHTML=`<div class="empty"><div style="font-size:34px">🧥</div><div class="big">Your closet is empty</div>
     <div style="font-size:13px;line-height:1.6">Tap <b>Add</b> below and photograph your first piece.<br>Build it up a few items at a time.</div></div>`;return;}
-  g.innerHTML=`<div class="grid">`+list.map(i=>`<div class="item" onclick="viewItem('${i.id}')"><img src="${i.photo}" alt="">
-    <span class="dot" style="background:${i.colorHex||'#bbb'}"></span><span class="cat">${i.category}</span><span class="lbl">${i.brand?i.brand+' · ':''}${i.subtype||i.color||''}</span></div>`).join("")
+  const list=filteredItems();
+  if(!list.length){g.innerHTML=`<div class="empty"><div class="big" style="margin-top:24px">No pieces match</div><div style="font-size:13px">Try clearing the search or filters.</div></div>`;return;}
+  g.innerHTML=`<div class="grid">`+list.map(i=>{const wc=i.wornCount||0;return `<div class="item" onclick="viewItem('${i.id}')"><img src="${i.photo}" alt="">
+    <span class="dot" style="background:${i.colorHex||'#bbb'}"></span><span class="cat">${i.category}</span>
+    <span class="lbl"><span class="lt">${i.brand?i.brand+' · ':''}${i.subtype||i.color||''}</span>${wc>0?`<span class="lw">${wc}×</span>`:''}</span></div>`;}).join("")
     +`<button class="add-tile" onclick="startAdd()"><div><div class="p">+</div>Add</div></button></div>`;}
 function renderOcc(){$('occ').innerHTML=OCCASIONS.map(o=>`<button class="chip ${state.occasion===o?'on':''}" onclick="setOcc('${o}')">${o}</button>`).join("");}
 function flatLayHTML(pcs){
-  const get=c=>pcs.find(p=>p.category===c);
-  const top=get('Top'),bottom=get('Bottom'),dress=get('Dress'),outer=get('Outerwear'),shoes=get('Shoes'),acc=get('Accessory');
+  const tops=pcs.filter(p=>p.category==='Top');
+  const outers=pcs.filter(p=>p.category==='Outerwear');
+  const dress=pcs.find(p=>p.category==='Dress');
+  const bottom=pcs.find(p=>p.category==='Bottom');
+  const shoes=pcs.find(p=>p.category==='Shoes');
+  const accs=pcs.filter(p=>p.category==='Accessory');
   const slot=(p,style)=>p?`<div class="slot" style="${style}"><img src="${p.photo}" alt=""></div>`:'';
   let h='';
   if(dress){
-    if(outer){h+=slot(outer,'left:2%;top:3%;width:46%;height:60%;transform:rotate(-5deg)');h+=slot(dress,'right:3%;top:6%;width:50%;height:72%;transform:rotate(4deg)');}
-    else{h+=slot(dress,'left:23%;top:4%;width:54%;height:74%;transform:rotate(2deg)');}
+    const up=outers[0];
+    if(up){h+=slot(up,'left:2%;top:3%;width:46%;height:60%;transform:rotate(-5deg)');h+=slot(dress,'right:3%;top:6%;width:50%;height:72%;transform:rotate(4deg)');}
+    else h+=slot(dress,'left:23%;top:4%;width:54%;height:74%;transform:rotate(2deg)');
   }else{
-    if(outer&&top){h+=slot(outer,'left:2%;top:2%;width:50%;height:46%;transform:rotate(-5deg)');h+=slot(top,'right:2%;top:6%;width:46%;height:42%;transform:rotate(5deg)');}
-    else{h+=slot(top||outer,'left:22%;top:3%;width:56%;height:44%');}
-    h+=slot(bottom,'left:24%;top:40%;width:52%;height:44%;transform:rotate(-2deg)');
+    const uppers=[...tops,...outers].slice(0,3);   // base layer -> outer, left to right
+    if(uppers.length<=1){h+=slot(uppers[0],'left:22%;top:3%;width:56%;height:44%');}
+    else if(uppers.length===2){h+=slot(uppers[0],'left:2%;top:2%;width:50%;height:46%;transform:rotate(-6deg)');h+=slot(uppers[1],'right:2%;top:6%;width:46%;height:42%;transform:rotate(6deg)');}
+    else{h+=slot(uppers[0],'left:0%;top:6%;width:38%;height:40%;transform:rotate(-9deg)');h+=slot(uppers[1],'left:31%;top:1%;width:40%;height:44%;transform:rotate(0deg)');h+=slot(uppers[2],'right:0%;top:6%;width:38%;height:40%;transform:rotate(9deg)');}
+    h+=slot(bottom,'left:24%;top:42%;width:52%;height:42%;transform:rotate(-2deg)');
   }
   h+=slot(shoes,'left:32%;bottom:2%;width:36%;height:20%;transform:rotate(3deg)');
-  h+=slot(acc,'right:1%;top:8%;width:22%;height:20%;transform:rotate(8deg)');
+  if(accs[0])h+=slot(accs[0],'right:1%;top:8%;width:22%;height:20%;transform:rotate(8deg)');
+  if(accs[1])h+=slot(accs[1],'left:1%;bottom:25%;width:20%;height:18%;transform:rotate(-8deg)');
   return `<div class="flatlay">${h}</div>`;
 }
 function lookVisual(pcs){
   if(state.layout==='row')return `<div class="row">${pcs.map(p=>`<div class="pc"><img src="${p.photo}" alt=""></div>`).join("")}</div>`;
   return flatLayHTML(pcs);
 }
+function encLook(l){return encodeURIComponent(JSON.stringify(l)).replace(/'/g,"%27");}
+function getLook(btn){const el=btn.closest('.look');return el?JSON.parse(decodeURIComponent(el.getAttribute('data-look'))):null;}
 function lookCard(l,opts){
   const pcs=(l.itemIds||[]).map(id=>itemById(id)).filter(Boolean);if(!pcs.length)return"";
-  const act=opts.saved?`<button class="mini saved" onclick='unsave("${l.sid}")'>♥ Saved</button>`:`<button class="mini" data-look='${encodeURIComponent(JSON.stringify(l))}' onclick='saveLook(this)'>♡ Save look</button>`;
-  return `<div class="look">${lookVisual(pcs)}<div class="body"><div class="nm">${l.name||'Look'}<span class="pill">${l.trend||''}</span></div><div class="why">${l.why||''}</div>${act}</div></div>`;}
-function renderSaved(){const el=$('savedList');if(!state.saved.length){el.innerHTML=`<div class="empty"><div style="font-size:30px">♡</div><div class="big">No saved looks yet</div><div style="font-size:13px">Style yourself and tap “Save look”.</div></div>`;return;}el.innerHTML=state.saved.map(l=>lookCard(l,{saved:true})).join("");}
+  const sig=sigOf(l),r=ratingOf(sig),saved=opts.saved||!!findSaved(sig);
+  return `<div class="look" data-look='${encLook(l)}'>${lookVisual(pcs)}<div class="body">
+    <div class="nm">${l.name||'Look'}<span class="pill">${l.trend||''}</span></div>
+    <div class="why">${l.why||''}</div>
+    <div class="lacts">
+      <button class="la ${r==='like'?'on':''}" onclick='rateLook(this,"like")'>👍</button>
+      <button class="la ${r==='dislike'?'on':''}" onclick='rateLook(this,"dislike")'>👎</button>
+      <button class="la" onclick='wearLook(this)'>Wear</button>
+      <button class="la heart ${saved?'on':''}" onclick='toggleSave(this)'>${saved?'♥':'♡'}</button>
+    </div></div></div>`;}
+function renderSaved(){const el=$('savedList');if(!state.saved.length){el.innerHTML=`<div class="empty"><div style="font-size:30px">♡</div><div class="big">No saved looks yet</div><div style="font-size:13px">Style yourself and tap the heart on a look.</div></div>`;return;}el.innerHTML=state.saved.map(l=>lookCard(l,{saved:true})).join("");}
 
 /* ---- actions ---- */
 function go(v,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('v-'+v).classList.add('on');
-  document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');$('scroll').scrollTop=0;if(v==='saved')renderSaved();}
-function setFilter(c){state.filter=c;renderWardrobe();}
+  document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');$('scroll').scrollTop=0;if(v==='saved')renderSaved();if(v==='style')renderWeather();}
+function setFilter(c){state.filter=c;document.querySelectorAll('#wfilter .chip').forEach(b=>b.classList.toggle('on',b.textContent===c));renderGrid();}
 function setOcc(o){state.occasion=o;renderOcc();}
 
 function newId(){return 'it_'+Date.now()+'_'+Math.floor(Math.random()*1e5);}
@@ -366,9 +472,10 @@ function renderAddBody(o){const p=state.pending;if(!p)return;
   const cat=p.category||"Top";const editing=!!state.editingId;const inBatch=!!state.batch;
   const primary=inBatch?("Save & next ("+(state.batchIdx+1)+"/"+state.batch.length+")"):(editing?"Save changes":"Add to wardrobe");
   $('addBody').innerHTML=`<div class="preview"><img src="${p.photo}"></div>
-    <div style="display:flex;gap:9px;margin-bottom:14px">
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <button class="mini" style="flex:1" onclick="syncFields();rotatePending()">↻ Rotate</button>
       <button class="mini" style="flex:1" onclick="syncFields();openEdit()">✎ Touch up</button>
-      <button class="mini" style="flex:1" onclick="syncFields();scanTag()">⌗ Scan brand tag</button>
+      <button class="mini" style="flex:1" onclick="syncFields();scanTag()">⌗ Tag</button>
     </div>
     ${o.failed?`<div class="note" style="text-align:center;margin-bottom:12px">Couldn't auto-tag — set it below.</div>`:``}
     ${p.barcode?`<div class="note" style="margin-bottom:12px">Barcode read: <b>${p.barcode}</b></div>`:``}
@@ -466,8 +573,10 @@ async function deleteCurrent(){const p=state.pending;if(!p)return;if(!confirm("R
 async function styleMe(){
   if(state.items.length<3){toast("Add a few more pieces first ("+state.items.length+"/3)");return;}
   const btn=$('styleBtn');btn.disabled=true;btn.innerHTML=`<span class="spinner"></span> &nbsp;Styling…`;$('looks').innerHTML="";
-  let looks;try{looks=hasAI()?await aiStyle(state.items,state.occasion):localStyle(state.items,state.occasion);}catch(_){looks=localStyle(state.items,state.occasion);}
-  if(!looks||!looks.length)looks=localStyle(state.items,state.occasion);
+  const w=state.weather;
+  const wnote=w?(" It is "+w.label.toLowerCase()+(w.temp!=null?(" ("+w.temp+"°C)"):"")+" today, so dress for the weather"+(w.bucket==='cold'?" with warm layers or outerwear":(w.bucket==='warm'?" and keep it light":""))+"."):"";
+  let looks;try{looks=hasAI()?await aiStyle(state.items,state.occasion,wnote):localStyle(state.items,state.occasion,w);}catch(_){looks=localStyle(state.items,state.occasion,w);}
+  if(!looks||!looks.length)looks=localStyle(state.items,state.occasion,w);
   state.lastLooks=looks;renderLooks();
   btn.disabled=false;btn.textContent="Style me again";}
 function renderLooks(){const looks=state.lastLooks;if(!looks){$('looks').innerHTML="";return;}
@@ -476,9 +585,31 @@ function renderLooks(){const looks=state.lastLooks;if(!looks){$('looks').innerHT
 function setLayout(m){state.layout=m;$('vFlat')?.classList.toggle('on',m==='flat');$('vRow')?.classList.toggle('on',m==='row');renderLooks();renderSaved();}
 $('styleBtn').addEventListener('click',styleMe);
 
-async function saveLook(el){const l=JSON.parse(decodeURIComponent(el.getAttribute('data-look')));l.sid='s_'+Date.now()+'_'+Math.floor(Math.random()*1e4);
-  state.saved.unshift(l);await idbPut('looks',l);el.classList.add('saved');el.textContent="♥ Saved";el.setAttribute('onclick',`unsave('${l.sid}')`);toast("Saved to your looks");}
-async function unsave(sid){state.saved=state.saved.filter(x=>x.sid!==sid);await idbDel('looks',sid);renderSaved();toast("Removed");}
+/* ---- taste / wear / save ---- */
+let taste={likes:[],dislikes:[]};
+function loadTaste(){try{const v=localStorage.getItem('ensemble:taste');if(v)taste=JSON.parse(v);}catch(e){}if(!taste.likes)taste.likes=[];if(!taste.dislikes)taste.dislikes=[];}
+function saveTaste(){try{localStorage.setItem('ensemble:taste',JSON.stringify(taste));}catch(e){}}
+function sigOf(l){return (l.itemIds||[]).slice().sort().join(',')+'|'+(l.trend||'');}
+function descOf(l){const pcs=(l.itemIds||[]).map(id=>itemById(id)).filter(Boolean);return (l.trend?l.trend+': ':'')+pcs.map(p=>p.color||p.subtype||p.category).join(', ');}
+function ratingOf(sig){if(taste.likes.some(x=>x.sig===sig))return 'like';if(taste.dislikes.some(x=>x.sig===sig))return 'dislike';return null;}
+function tasteSummary(){const L=taste.likes.slice(0,12).map(x=>x.desc).filter(Boolean).join(' / ');const D=taste.dislikes.slice(0,12).map(x=>x.desc).filter(Boolean).join(' / ');let s='';if(L)s+=' The user tends to LIKE looks like: '+L+'.';if(D)s+=' The user tends to DISLIKE: '+D+'.';if(s)s+=' Lean toward their taste.';return s;}
+function findSaved(sig){return state.saved.find(s=>sigOf(s)===sig);}
+
+async function rateLook(btn,val){const l=getLook(btn);if(!l)return;const sig=sigOf(l),prev=ratingOf(sig);
+  taste.likes=taste.likes.filter(x=>x.sig!==sig);taste.dislikes=taste.dislikes.filter(x=>x.sig!==sig);
+  if(prev!==val){(val==='like'?taste.likes:taste.dislikes).unshift({sig,desc:descOf(l)});}
+  taste.likes=taste.likes.slice(0,40);taste.dislikes=taste.dislikes.slice(0,40);saveTaste();
+  renderLooks();renderSaved();
+  toast(prev===val?"Cleared":(val==='like'?"Noted — more like this":"Noted — less of this"));}
+
+async function wearLook(btn){const l=getLook(btn);if(!l)return;const today=new Date().toISOString().slice(0,10);let n=0;
+  for(const id of (l.itemIds||[])){const it=itemById(id);if(it){it.wornCount=(it.wornCount||0)+1;it.lastWorn=today;await idbPut('items',it);n++;}}
+  if(n)renderGrid();toast(n?"Logged — worn today":"No items to log");}
+
+async function toggleSave(btn){const l=getLook(btn);if(!l)return;const sig=sigOf(l);const ex=findSaved(sig);
+  if(ex){state.saved=state.saved.filter(s=>s!==ex);await idbDel('looks',ex.sid);toast("Removed from saved");}
+  else{l.sid='s_'+Date.now()+'_'+Math.floor(Math.random()*1e5);state.saved.unshift(l);await idbPut('looks',l);toast("Saved to your looks");}
+  renderLooks();renderSaved();}
 
 /* ---- settings ---- */
 function openSettings(){renderSettings();$('setSheet').classList.add('up');}
@@ -500,7 +631,7 @@ function renderSettings(){const k=getKey();const cur=getTheme();
     <button class="btn btn-ghost" style="margin-bottom:10px" onclick="exportData()">Export backup (${state.items.length} pieces)</button>
     <button class="btn btn-ghost" onclick="importStart()">Import backup…</button>`;}
 function exportData(){
-  try{const data={app:'ensemble',v:1,date:new Date().toISOString(),theme:getTheme(),items:state.items,saved:state.saved};
+  try{const data={app:'ensemble',v:2,date:new Date().toISOString(),theme:getTheme(),items:state.items,saved:state.saved,taste:taste};
     const blob=new Blob([JSON.stringify(data)],{type:'application/json'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ensemble-backup-'+new Date().toISOString().slice(0,10)+'.json';
     document.body.appendChild(a);a.click();a.remove();toast("Backup downloaded");}
@@ -516,6 +647,7 @@ $('importInput').addEventListener('change',async e=>{
     for(const it of data.items){if(it&&it.id){await idbPut('items',it);}}
     if(Array.isArray(data.saved))for(const l of data.saved){if(l&&l.sid)await idbPut('looks',l);}
     if(data.theme)applyTheme(data.theme);
+    if(data.taste&&data.taste.likes){taste=data.taste;if(!taste.likes)taste.likes=[];if(!taste.dislikes)taste.dislikes=[];saveTaste();}
     state.items=await idbAll('items');state.saved=await idbAll('looks');
     closeSettings();renderWardrobe();renderSaved();toast("Imported "+data.items.length+" pieces");
   }catch(_){toast("Import failed");}
@@ -526,6 +658,75 @@ function openExt(u){try{window.open(u,'_blank');}catch(e){}}
 
 let toastT;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
 
+/* ---- weather (today's outfit) ---- */
+const WMO={0:['Clear','☀️'],1:['Mainly clear','🌤️'],2:['Partly cloudy','⛅'],3:['Overcast','☁️'],45:['Fog','🌫️'],48:['Fog','🌫️'],51:['Light drizzle','🌦️'],53:['Drizzle','🌦️'],55:['Drizzle','🌦️'],56:['Freezing drizzle','🌦️'],57:['Freezing drizzle','🌦️'],61:['Light rain','🌧️'],63:['Rain','🌧️'],65:['Heavy rain','🌧️'],66:['Freezing rain','🌧️'],67:['Freezing rain','🌧️'],71:['Light snow','🌨️'],73:['Snow','🌨️'],75:['Heavy snow','❄️'],77:['Snow grains','🌨️'],80:['Showers','🌦️'],81:['Showers','🌧️'],82:['Heavy showers','⛈️'],85:['Snow showers','🌨️'],86:['Snow showers','❄️'],95:['Thunderstorm','⛈️'],96:['Thunderstorm','⛈️'],99:['Thunderstorm','⛈️']};
+function wmo(c){return WMO[c]||['Weather','🌡️'];}
+function bucketOf(t){return t<10?'cold':(t>21?'warm':'mild');}
+function renderWeather(){const el=$('weather');if(!el)return;const w=state.weather;
+  if(w){el.innerHTML=`<div class="weather"><span style="font-size:18px">${w.emoji}</span><span class="wt">${w.temp!=null?w.temp+'° · ':''}${w.label}${w.manual?' (manual)':''}</span><button class="wbtn" onclick="loadWeather()">Update</button></div>`;return;}
+  el.innerHTML=`<div class="weather"><span style="font-size:16px">🌡️</span><span>Dress for today's weather?</span><button class="wbtn" onclick="loadWeather()">Use my weather</button></div>
+    <div class="wmanual"><button class="chip" onclick="setManualWeather('cold')">Cold</button><button class="chip" onclick="setManualWeather('mild')">Mild</button><button class="chip" onclick="setManualWeather('warm')">Warm</button></div>`;}
+function setManualWeather(b){state.weather={bucket:b,label:b.charAt(0).toUpperCase()+b.slice(1),emoji:b==='cold'?'❄️':(b==='warm'?'☀️':'⛅'),temp:null,manual:true};renderWeather();toast("Styling for "+b+" weather");}
+async function loadWeather(){
+  if(!navigator.geolocation){toast("Location unavailable — pick a level");renderWeather();return;}
+  $('weather').innerHTML=`<div class="weather"><span class="spinner dark"></span><span>&nbsp;Getting your weather…</span></div>`;
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    try{const la=pos.coords.latitude.toFixed(3),lo=pos.coords.longitude.toFixed(3);
+      const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=temperature_2m,weather_code');
+      const d=await r.json();const t=Math.round(d.current.temperature_2m);const wm=wmo(d.current.weather_code);
+      state.weather={temp:t,label:wm[0],emoji:wm[1],bucket:bucketOf(t)};renderWeather();toast("Got today's weather");
+    }catch(_){renderWeather();toast("Couldn't fetch — pick a level");}
+  },()=>{renderWeather();toast("Location blocked — pick Cold/Mild/Warm");},{timeout:9000,maximumAge:600000});}
+
+/* ---- manual outfit builder ---- */
+function openBuild(){if(!state.items.length){toast("Add some pieces first");return;}state.buildIds=[];renderBuild();$('buildSheet').classList.add('up');}
+function closeBuild(){$('buildSheet').classList.remove('up');}
+function toggleBuild(id){const it=itemById(id);if(!it)return;const c=it.category;const multi=(c==='Top'||c==='Accessory');
+  const idx=state.buildIds.indexOf(id);
+  if(idx>=0){state.buildIds.splice(idx,1);}
+  else{if(!multi)state.buildIds=state.buildIds.filter(x=>{const o=itemById(x);return !o||o.category!==c;});state.buildIds.push(id);}
+  renderBuild();}
+function renderBuild(){
+  const pcs=state.buildIds.map(id=>itemById(id)).filter(Boolean);
+  $('buildPreview').innerHTML=pcs.length?`<div class="look" style="margin-bottom:14px">${flatLayHTML(pcs)}</div>`:`<div class="note" style="text-align:center;margin:24px 0">Pick pieces below to compose a look.<br>Tops &amp; accessories can be layered.</div>`;
+  const cats=CATS.filter(c=>state.items.some(i=>i.category===c));
+  $('buildPicker').innerHTML=cats.map(c=>{const items=state.items.filter(i=>i.category===c);
+    return `<div class="bpgroup"><div class="bplabel">${c}${(c==='Top'||c==='Accessory')?' · layerable':''}</div><div class="bprow">`+items.map(i=>`<div class="bpick ${state.buildIds.includes(i.id)?'on':''}" onclick="toggleBuild('${i.id}')"><img src="${i.photo}" alt=""></div>`).join("")+`</div></div>`;}).join("");}
+async function saveBuilt(){const ids=state.buildIds.slice();if(ids.length<2){toast("Pick at least two pieces");return;}
+  const l={name:"My outfit",trend:"Custom",itemIds:ids,why:"Hand-picked by you.",sid:'s_'+Date.now()+'_'+Math.floor(Math.random()*1e5)};
+  state.saved.unshift(l);await idbPut('looks',l);closeBuild();renderSaved();go('saved',document.querySelector('.nav button[data-v="saved"]'));toast("Saved your look");}
+
+/* ---- wardrobe stats ---- */
+function openStats(){renderStats();$('statsSheet').classList.add('up');}
+function closeStats(){$('statsSheet').classList.remove('up');}
+function topCounts(arr){const m={};arr.forEach(v=>{if(v&&v.trim){const k=v.trim();if(k)m[k]=(m[k]||0)+1;}});return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
+function renderStats(){const it=state.items,n=it.length;
+  if(!n){$('statsBody').innerHTML=`<div class="empty"><div class="big" style="margin-top:30px">Nothing to analyse yet</div><div style="font-size:13px">Add some pieces first.</div></div>`;return;}
+  const catCounts=CATS.map(c=>[c,it.filter(i=>i.category===c).length]).filter(x=>x[1]>0);
+  const maxc=Math.max(1,...catCounts.map(x=>x[1]));
+  const catBars=catCounts.map(([c,v])=>`<div class="stat-row"><span class="sn">${c}</span><div class="stat-bar"><i style="width:${Math.round(v/maxc*100)}%"></i></div><span class="sv">${v}</span></div>`).join("");
+  const never=it.filter(i=>!(i.wornCount>0)).length;
+  const mostWorn=it.slice().sort((a,b)=>(b.wornCount||0)-(a.wornCount||0))[0];
+  const leastList=it.slice().sort((a,b)=>(a.wornCount||0)-(b.wornCount||0)).slice(0,3);
+  const colors=topCounts(it.map(i=>i.color)).slice(0,8);
+  const brands=topCounts(it.map(i=>i.brand)).slice(0,8);
+  const tops=it.filter(i=>i.category==='Top').length,bottoms=it.filter(i=>i.category==='Bottom').length,shoes=it.filter(i=>i.category==='Shoes').length;
+  const ins=[];
+  if(bottoms&&tops/Math.max(1,bottoms)>=2.5)ins.push("Lots of tops vs bottoms — a few more bottoms would unlock more outfits.");
+  else if(tops&&bottoms/Math.max(1,tops)>=2.5)ins.push("Plenty of bottoms but few tops — more tops would balance things.");
+  if(!shoes)ins.push("No shoes yet — add a pair so full looks can be built.");
+  if(never)ins.push(never+(never>1?" pieces have":" piece has")+" never been worn — the “Least worn” filter helps you rediscover them.");
+  if(!ins.length)ins.push("Nicely balanced — keep tapping “Wear” to sharpen these stats over time.");
+  $('statsBody').innerHTML=`
+    <div class="insight">${ins.join("<br><br>")}</div>
+    <div class="stat-card"><div class="sct">${n} pieces by category</div>${catBars}</div>
+    <div class="stat-card"><div class="sct">Wear</div>
+      <div class="note">${mostWorn&&mostWorn.wornCount?('Most worn: '+(mostWorn.brand?mostWorn.brand+' ':'')+(mostWorn.subtype||mostWorn.category)+' ('+mostWorn.wornCount+'×)'):'Log outfits with “Wear” to see your most-worn pieces.'}</div>
+      <div class="note" style="margin-top:8px">Least worn: ${leastList.map(i=>(i.subtype||i.category)+' ('+(i.wornCount||0)+'×)').join(', ')}</div></div>
+    ${colors.length?`<div class="stat-card"><div class="sct">Colours</div><div class="chiprow">${colors.map(([c,v])=>`<span class="tagpill">${c}<b>${v}</b></span>`).join("")}</div></div>`:''}
+    ${brands.length?`<div class="stat-card"><div class="sct">Brands</div><div class="chiprow">${brands.map(([c,v])=>`<span class="tagpill">${c}<b>${v}</b></span>`).join("")}</div></div>`:''}`;}
+
+
 /* ---- install manifest (Android) ---- */
 try{const icon="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192'><rect width='192' height='192' rx='42' fill='#E9E5DC'/><text x='50%' y='62%' font-family='Georgia,serif' font-size='116' font-weight='600' fill='#1A1815' text-anchor='middle'>E<tspan fill='#6E2B36'>.</tspan></text></svg>`);
   const man={name:"Ensemble",short_name:"Ensemble",start_url:".",display:"standalone",background_color:"#F6F2EA",theme_color:"#6E2B36",icons:[{src:icon,sizes:"192x192",type:"image/svg+xml"},{src:icon,sizes:"512x512",type:"image/svg+xml"}]};
@@ -533,7 +734,7 @@ try{const icon="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.
 }catch(e){}
 
 /* ---- boot ---- */
-(async function(){applyTheme(getTheme());renderOcc();refreshAIBadge();try{state.items=await idbAll('items');state.saved=await idbAll('looks');}catch(_){}renderWardrobe();})();
+(async function(){applyTheme(getTheme());loadTaste();renderOcc();refreshAIBadge();try{state.items=await idbAll('items');state.saved=await idbAll('looks');}catch(_){}renderWardrobe();})();
 </script>
 </body>
 </html>
